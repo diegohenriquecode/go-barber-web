@@ -11,6 +11,8 @@ import { Container } from './styles';
 
 interface ToastProps {
   message: ToastMessage;
+  // O Eslint pediu pra usar isso ao invés de objeto!
+  style: Record<string, unknown>;
 }
 
 const icons = {
@@ -19,10 +21,9 @@ const icons = {
   success: <FiCheckCircle size={24} />,
 };
 
-const Toast: React.FC<ToastProps> = ({ message }) => {
+const Toast: React.FC<ToastProps> = ({ message, style }) => {
   const { removeToast } = useToast();
 
-  // PAREI AQUI CRIANDO O USEEFFECT PARA DISPARAR UMA AÇÃO NO TOAST!
   useEffect(() => {
     const timer = setTimeout(() => {
       removeToast(message.id);
@@ -34,7 +35,11 @@ const Toast: React.FC<ToastProps> = ({ message }) => {
   }, [removeToast, message.id]);
 
   return (
-    <Container type={message.type} hasDescription={!!message.description}>
+    <Container
+      type={message.type}
+      hasDescription={!!message.description}
+      style={style}
+    >
       {icons[message.type || 'info']}
       <div>
         <strong> {message.title} </strong>
