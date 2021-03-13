@@ -1,9 +1,25 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
-import signUpBackground from '../../assets/sign-up-background.png';
+import signInBackground from '../../assets/sign-in-background.png';
 
-const appearFromRight = keyframes`
+export const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+`;
+
+export const Content = styled.div`
+  width: 100%;
+  max-width: 700px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const appearFromRigth = keyframes`
   from {
     opacity: 0;
     transform: translateX(50px);
@@ -13,21 +29,14 @@ const appearFromRight = keyframes`
   }
 `;
 
-export const Container = styled.div`
-  height: 100vh;
-  display: flex;
-  align-items: stretch;
-`;
-
-export const Content = styled.div`
-  animation: ${appearFromRight} 1s;
-
+export const AnimationContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  place-content: center;
-  width: 100%;
-  max-width: 700px;
+  justify-content: center;
+
+  animation: ${appearFromRigth} 1s;
+
   form {
     margin: 80px 0;
     width: 340px;
@@ -35,6 +44,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
     h1 {
       margin-bottom: 24px;
     }
@@ -45,7 +55,7 @@ export const Content = styled.div`
       border: 2px solid #232129;
       padding: 16px;
       max-width: 340px;
-      width: 90%;
+      width: 100%;
       &::placeholder {
         color: #666360;
       }
@@ -80,7 +90,7 @@ export const Content = styled.div`
     }
   }
   > a {
-    color: #f4ede8;
+    color: #ff9000;
     display: block;
     margin-top: 24px;
     text-decoration: none;
@@ -91,13 +101,13 @@ export const Content = styled.div`
       margin-right: 16px;
     }
     &:hover {
-      color: ${shade(0.2, '#f4ede8')};
+      color: ${shade(0.2, '#ff9000')};
     }
   }
 `;
 
 export const Background = styled.div`
   flex: 1;
-  background: url(${signUpBackground}) no-repeat center;
+  background: url(${signInBackground}) no-repeat center;
   background-size: cover;
 `;
